@@ -1,0 +1,5 @@
+dirtyFields is a jQuery plugin that makes a user aware of which form elements have been updated on an HTML form and can reset the form values back to their previous state.
+
+The main website for the plugin (which includes documentation, demos, and a download file) is currently at:
+
+http://www.thoughtdelimited.org/dirtyFields/index.cfm

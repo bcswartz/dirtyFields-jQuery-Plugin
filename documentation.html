@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>dirtyFields Plugin Documentation</title>
+		
+<style>
+	
+	a {color:blue;text-decoration:none;}
+	a:visited {color:blue;}
+	a:hover {text-decoration:underline;}
+	
+	body {font: 85%/160% "Trebuchet MS", Tahoma, Arial;}
+	
+	hr  {height:15px;background-color:#ccc;margin-top:30px;}
+	
+	pre {
+		background-color: #ffffcc;
+		font-family:Arial, sans-serif;
+		font-size:95%;	
+		overflow:auto;
+		padding:3px;
+		width:98%;
+	}
+
+	.mainList {margin-left:15px;padding-left:15px;}
+	.mainList>li {margin-bottom:3ex;}
+	.mainList>li>strong {color:red;}
+	
+</style>		
+		
+</head>
+<body>
+		
+<h2>dirtyFields Documentation</h2>
+
+<ul class="pageNavList">
+	<li>
+		<a class="internalLink" href="#settings">Settings</a>
+	</li>
+	<li>
+		<a class="internalLink" href="#implementing">Implementing the Plugin</a>
+	</li>
+	<li>
+		<a class="internalLink" href="#callbacks">Callbacks</a>	
+	</li>
+	<li>
+		<a class="internalLink" href="#publicFunctions">Public Functions</a>	
+	</li>
+</ul>
+
+<hr />
+
+<a name="implementing"></a><h3>Implementing the Plugin</h3>
+
+<p>As with most jQuery plugins, implementing the plugin with its default settings takes a single line of code.  Call the plugin after the selector that denotes the form or container element that encloses all of the form fields you want to track the status of:</p>
+
+<pre>$("#myForm").dirtyFields();</pre>
+
+<p>
+	When used with its default settings, the plugin does the following:
+	<ul class="valuesList">
+		<li>Whenever a text input, &lt;textarea&gt;, or &lt;select&gt; element is changed (such that the jQuery change event is triggered), the &lt;label&gt; element associated with the element (via the label's "for" attribute) will have the CSS class "dirtyField" added to it.</li>
+		<li>Whenever a checkbox or radio button element is changed, the &lt;span&gt; sibling element that follows it will have the CSS class "dirtyField" added to it.</li>
+	</ul>
+	It is up to you to write the CSS code for the "dirtyField" class.
+</p>
+
+<p>To change those defaults, or to access additional plugin functionality via the callbacks, you can pass in a collection of settings and callbacks as options, like so:</p>
+
+<pre>var options= {
+    denoteDirtyForm: true,
+    denoteDirtyOptions: true,
+    trimText:true,
+    preFieldChangeCallback: function(originalValue) {
+        $("#callbackBox").append("preFieldChangeCallback run.  Original value: " + originalValue + "&;lt;br /&gt;");
+    }
+ };
+ 
+$("#myForm").dirtyFields(options);</pre>
+
+<p>Any settings that you don't pass in will simply default to the setting's default value, and any callbacks you don't define will simply not execute.</p>
+
+<hr />
+
+<a name="settings"></a><h3>Settings</h3>
+
+<p>Below is an alphabetical list of all of the optional settings you can use to alter the behavior of the plugin:</p>
+
+<ul class="mainList">
+	<li>
+		<a name="checkboxRadioContext"></a><strong>checkboxRadioContext</strong><br />
+		Default: "next-span"<br />
+		<p>
+			Tells the plugin which DOM/page element to apply the dirty field CSS class to (which is set to "dirtyField" by default) when used with checkbox and radio elements.  Possible values are:
+				<a name="crContextValues"></a>
+				<ul class="valuesList">
+					<li>
+					   <strong>previous-<em>element tag</em></strong>: a sibling DOM element that precedes the checkbox/radio button.
+					</li>
+					<li>
+					 	<strong>next-<em>element tag</em></strong>:  a sibling DOM element that follows the checkbox/radio button (like the default setting of "next-span").
+					</li>
+					<li>
+						<strong>closest-<em>element tag</em></strong>: the closest DOM element of that tag, whether it be a sibling or a parent.  Useful in forms where the &lt;label&gt; encloses the form field. 
+					</li>
+					<li>
+						<strong>id-for</strong>: the &lt;label&gt; element whose "for" attribute value matches the "id" attribute value of the checkbox/radio button.
+					</li>
+					<li>
+						<strong>id-class</strong>: the DOM element who has a CSS class that matches the "id" attribute value of the checkbox/radio button.
+					</li>
+					<li>
+						<strong>id-title</strong>: the DOM element whose "title" attribute value matches the "id" attribute value of the checkbox/radio button.
+					</li>
+					<li>
+						<strong>name-for</strong>: the &lt;label&gt; element whose "for" attribute value matches the "name" attribute value of the checkbox/radio button.
+					</li>
+					<li>
+						<strong>name-class</strong>: the DOM element who has a CSS class that matches the "name" attribute value of the checkbox/radio button.
+					</li>
+					<li>
+						<strong>name-title</strong>: the DOM element whose "title" attribute value matches the "name" attribute value of the checkbox/radio button.
+					</li>
+				</ul> 
+		</p>
+	</li>
+	<li>
+		<a name="denoteDirtyOptions"></a><strong>denoteDirtyOptions</strong><br />
+		Default: false<br />
+		<p>
+			Tells the plugin whether or not to apply the dirty options CSS class (which is set to "dirtyOption" by default) to &lt;select&gt; options whose selection status has been changed from their original state. 
+		</p>
+	</li>	   
+	<li>
+		<a name="denoteDirtyForm"></a><strong>denoteDirtyForm</strong><br />
+		Default: false<br />
+		<p>
+			Tells the plugin whether or not to apply the dirty form CSS class (which is set to "dirtyForm" by default) to the container element you applied the plugin to.
+		</p>
+	</li>
+	<li>
+		<a name="dirtyFieldClass"></a><strong>dirtyFieldClass</strong><br />
+		Default: "dirtyField"<br />
+		<p>
+			The name of the CSS class that will be applied to the appropriate contextual element when a form field is evaluated as being dirty.
+		</p>
+	</li>
+	<li>
+		<strong>dirtyFieldsDataProperty</strong><br />
+		Default: "dirtyFields"<br />
+		<p>
+			When the plugin is applied to the container element (whether it be a form, a &lt;div&gt;, or something else), it stores all of the plugin settings in an object called "dF" that gets added to the container element via the <a href="http://docs.jquery.com/Core/data#name">jQuery data() function</a>.  This setting determines the name of the object property inside the "dF" object that will store an array of the names of all currently dirty form fields.
+		</p>
+		<p>So if this setting was left with the default setting value of "dirtyFields", and you applied the plugin to a form with an id of "myForm", you could retrieve the array of dirty fields with the statement:</p>
+<pre>var dirtyFieldsArray= $("#myForm").data("dF").dirtyFields</pre>
+<p>The <a href="#formChangeCallback" class="internalLink">formChangeCallback</a> callback function also provides access to the same array of dirty field names.</p>
+	</li>	
+	<li>
+		<a name="dirtyFormClass"></a><strong>dirtyFormClass</strong><br />
+		Default: "dirtyForm"<br />
+		<p>
+			The name of the CSS class that will be applied to the form or other container element if any of the form fields are dirty and the <a href="#denoteDirtyForm" class="internalLink">denoteDirtyForm</a> setting is set to true.
+		</p>
+	</li>
+	<li>
+		<strong>dirtyOptionClass</strong><br />
+		Default: "dirtyOption"<br />
+		<p>
+			The name of the CSS class that will be applied to any &lt;option&gt; element whose selection status has been changed from their original state if the <a href="#denoteDirtyOptions" class="internalLink">denoteDirtyOptions</a> setting is set to true.</p>
+		<p>
+			Note that some CSS styles (such as "color") will not work on &lt;option&gt; elements ("font-style" and "font-weight", however, will work) and that Internet Explorer may not respect any CSS styling of options.
+		</p>
+	</li>
+	<li>
+    	<a name="fieldOverrides"></a><strong>fieldOverrides</strong><br />
+		Default: {none:"none"}<br />
+		<p>
+			Use the fieldOverrides object to specify form elements who are exceptions to the <a href="#checkboxRadioContext" class="internalLink" >checkboxRadioContext</a> and <a href="#textboxSelectContext" class="internalLink">textboxSelectContext</a> settings.  For example, say you have eight &lt;textarea&gt; fields in your form.  For most of them, you want the corresponding &lt;label&gt; element to receive the dirty field class, so you leave the textboxSelectContext as the default "id-for".  But for two of the &lt;textareas&gt;, with ids of "textA" and "textB" respectively, you want the &lt;h3&gt; elements with ids of "headlineA" and "headlineB" to receive the dirty field class.  To make that happen, simply input the ids of the form elements as property names in the fieldOverrides object and input the ids of the contextual elements as their values, like so: 
+		</p>
+<pre>var settings= {
+    fieldOverrides: {
+        textA: "headlineA",
+        textB: "headlineB"
+        }
+};</pre>
+	</li> 
+	<li>
+		<strong>startingValueDataProperty</strong><br />
+		Default: "startingValue"<br />
+		<p>
+			When the plugin is applied to the container element, or when the <a href="#formSaved" class="internalLink">formSaved</a> public function is executed, the current value or state of the form elements is stored "within" each element using the <a href="http://docs.jquery.com/Core/data#name">jQuery data() function</a>.  The name of the property where this value is stored is determined by this setting.
+		</p>
+		<p>So if this setting was left with the default value of "startingValue", you could retrieve the initial/saved value of a text element with the statement:
+<pre>var originalValue= $("#textA").data("startingValue")</pre>
+<p>...or the initial/saved state of a checkbox (true if checked, false if not) with the statement:</p> 
+<pre>var isChecked= $("#myVote").data("startingValue")</pre>
+		</p>
+	</li>
+	<li>
+		<a name="textboxSelectContext"></a><strong>textboxSelectContext</strong><br />
+		Default: "id-for"<br />
+		<p>
+			Tells the plugin which DOM/page element to apply the dirty field CSS class to (which is set to "dirtyField" by default) when used with text inputs, file inputs, password inputs, textareas, and &lt;select&gt; elements.  Same possible values as the ones listed under <a href="#crContextValues" class="internalLink">checkboxRadioContext</a>.
+		</p>
+	</li>
+	<li>
+	 	<strong>trimText</strong><br />
+		Default: false<br />
+		<p>
+			When set to true, the plugin will ignore/throw out any leading or trailing spaces from the current value of the form field before comparing it with the original value of the form field (so a field changed from "Robert" to "Robert " will not be considered to be changed/dirty).  Useful when you have server-side code that removes leading/trailing spaces before saving a value to the database.
+		</p>
+	</li>
+</ul>
+<hr />
+
+<a name="callbacks"></a><h3>Callbacks</h3>
+
+<p>The callbacks provided by the plugin are listed below in order of execution:</p>
+
+<ul class="mainList">
+	<li>
+		<strong>preFieldChangeCallback</strong>(<em>Previous value</em>,<em>Dirty or not</em>)<br />
+		<p>
+			If you define a preFieldChangeCallback function using the settings, it will execute prior to the plugin functions that will evaluate whether or not a field is dirty.  The following data is passed back to the callback function:
+				<ul class="valuesList">
+					<li>A jQuery object representing the form field changed (accessible as "$(this)").  This is passed implicitly; it does not appear in the list of parameters.</li>
+					<li>The initial/saved value of the form field, passed back as a parameter.  For checkboxes and radio buttons, the value returned will be Boolean value denoting if the button/checkbox is checked.  For multi-select drop-downs, the value returned will be an array of the values of the selected options.</li>
+				</ul> 
+		</p>
+<pre>var options= {
+    trimText:true,
+    preFieldChangeCallback: function(originalValue) {
+        console.log("Form field " + $(this).attr("name") + " had starting/saved value of: " + originalValue);
+      },
+    dirtyFieldsClass: "alteredField"
+};
+
+$("#myForm").dirtyFields(options);</pre>
+	</li>
+	
+	<li>
+		<a name="fieldChangeCallback"></a><strong>fieldChangeCallback</strong>(<em>Previous value</em>,<em>Dirty or not</em>)<br />
+		<p>
+			This callback will execute just after the plugin functions that evaluate whether or not a field is dirty have completed, but before the function that detemines if the form or form field container is dirty (if the <a href="#denoteDirtyForm" class="internalLink">denoteDirtyForm</a> setting is set to true).  The following data is passed back to the callback function:
+			<ul class="valuesList">
+					<li>A jQuery object representing the form field changed (accessible as "$(this)").  This is passed implicitly; it does not appear in the list of parameters.</li>
+					<li>The initial/saved value of the form field, passed back as a parameter.  For checkboxes and radio buttons, the value returned will be Boolean value denoting if the button/checkbox is checked.  For multi-select drop-downs, the value returned will be an array of the values of the selected options.</li>
+					<li>A Boolean value denoting if the field is now dirty (true) or not (false), passed back as a parameter.</li>
+				</ul>
+		</p>
+<pre>var options= {
+    trimText:true,
+    fieldChangeCallback: function(originalValue,isDirty) {
+        if(isDirty) {
+            console.log("Form field " + $(this).attr("name") + " value changed from  " + originalValue + " to " + $(this).val());
+          }
+          else {
+            console.log("Form field " + $(this).attr("name") + " value unchanged");
+           }
+        },
+    dirtyFieldsClass: "alteredField"
+};</pre>
+	</li>
+	<li>
+		<a name="formChangeCallback"></a><strong>formChangeCallback</strong>(<em>Dirty or not</em>,<em>Array of dirty field names</em>)<br />
+		<p>
+			If the <a href="#denoteDirtyForm" class="internalLink">denoteDirtyForm</a> setting is set to true, this callback will execute after the plugin evaluates whether the form or form field container contains one or more dirty fields.  The following data is passed back to the callback function:
+				<ul class="valuesList">
+					<li>A jQuery object representing the form/form field container (accessible as "$(this)").  This is passed implicitly; it does not appear in the list of parameters.</li>
+					<li>A Boolean value denoting if the form/form field container is now dirty (true) or not (false), passed back as a parameter.</li>
+					<li>An array containing the names of all the form fields currently dirty.</li>
+				</ul> 
+		</p>
+<pre>var options= {
+    trimText:true,
+    formChangeCallback: function(isDirty,dirtyFieldsArray) {
+        if(isDirty) {
+            console.log("Form is dirty.  Dirty form fields " + dirtyFieldsArray);
+          }
+          else {
+            console.log("Form is clean");
+          }
+        },
+    dirtyFieldsClass: "alteredField"
+};</pre>
+	</li>
+</ul>
+
+<hr />
+<a name="publicFunctions"></a><h3>Public Functions</h3>
+
+<p>The plugin comes with a number of public functions to help you utilize the plugin in a number of different scenarios.  Each of these functions can be called as a property of the $.fn.dirtyFields object (as shown in the example code).</p>
+
+<p><strong>NOTE</strong>:  All of these functions require the form or form field container that the plugin was applied to to be passed in as a parameter.  You cannot use a different container element for that parameter:  it must be the container that the main plugin function dirtyFields() was used with.</p>
+
+<ul class="mainList">
+	<li>
+		<a name="configureField"></a><strong>configureField</strong>(<em>Object</em>,<em>Container object</em>,<em>Context</em>,<em>Override target</em>)<br />
+		<p>
+			This function lets you add the change event handler to any new form fields you add to the form dynamically after the page is loaded so that the plugin will process the new fields. Note that you will also need to use either the <a href="#setStartingTextValue" class="internalLink">setStartingTextValue</a>, <a href="#setStartingSelectValue" class="internalLink">setStartingSelectValue</a>, or <a href="#setStartingCheckboxRadioValue" class="internalLink">setStartingCheckboxRadioValue</a> function on the new form field as well in order to set the field's initial, clean value/state. The parameters are:
+				<ul class="valueList">
+					<li>A single jQuery object to add the event handler to.</li>
+					<li>The jQuery object representing the form or form field container.</li>
+					<li>The type of form field the object is ("text","select", or "checkboxRadio").</li>
+					<li>(Optional) The id attribute of the DOM element you want to receive the dirty field class if you want to override the typical plugin behavior associated with the type of form field cited in the third parameter (it essentially adds a new property to the <a href="#fieldOverrides" class="internalLink">fieldOverrides</a> setting).</li>
+				</ul>
+		</p>
+<pre>$.fn.dirtyFields.configureField($("#newTextInput"),$("#myForm"),"text");</pre>
+	</li>
+	<li>
+		<a name="formSaved"></a><strong>formSaved</strong>(<em>Container object</em>)<br />
+		<p>
+			Updates all of the initial/saved form field values and states to whatever the current values and states of the form fields are and marks the form fields and the form container as being clean (by removing all instances of the dirty field, dirty option, and dirty form CSS classes).  You would use this function anytime the current form values are saved to the database via AJAX.  It takes one parameter:  the form/form container as a jQuery object.
+		</p>
+<pre>$.fn.dirtyFields.formSaved($("#myForm"));</pre>
+	</li>
+	<li>
+		<strong>markContainerFieldsClean</strong>(<em>Container object</em>)<br />
+		<p>
+			This function simply removes all instances of the dirty field, dirty option, and dirty form CSS classes from the specified container object (which is passed in as the sole parameter). 
+		</p>
+<pre>$.fn.dirtyFields.markContainerFieldsClean($("#myForm"));</pre>
+	</li>
+	<li>
+		<strong>rollbackCheckboxRadioState</strong>(<em>Object(s)</em>,<em>Container object</em>,<em>Process change</em>)<br />
+		<p>
+			Reverts the specified checkbox or radio button field(s) back to their initial/saved state  (checked or unchecked).  The plugin callbacks (unless bypassed) will be executed once for each checkbox/radio button you rollback.  The parameters are:
+				<ul class="valueList">
+					<li>The jQuery object or objects to be rolled back.</li>
+					<li>The jQuery object representing the form or form field container.</li>
+					<li>(Optional, default is true) A Boolean value as to whether or not you want the plugin to evaluate whether or not the end result of this function makes the specified form fields dirty or not.  Set this to false to bypass the plugin's usual behavior.</li>
+				</ul>
+		</p>
+<pre>$.fn.dirtyFields.rollbackCheckboxRadioState($("input[name='ageRange']"),$("#myForm"),false);</pre>		
+	</li>
+	<li>
+		<strong>rollbackForm</strong>(<em>Container object</em>)<br />
+		<p>
+			Reverts all of the form fields within the specified form or form field container back to their initial/saved value.  Works like the standard HTML "Reset" button, but when used in conjunction with the <a href="#formSaved" class="internalLink">formSaved</a> function, it will reset the values of the form back to whatever values the form had when the formSaved function was executed, instead of to the values the form had when the web page was first loaded.
+		</p>
+<pre>$.fn.dirtyFields.rollbackForm($("#myForm"));</pre>		
+	</li>
+	<li>
+		<strong>rollbackSelectState</strong>(<em>Object(s)</em>,<em>Container object</em>,<em>Process change</em>)<br />
+		<p>
+			Reverts the specified &lt;select&gt; element(s) and their options back to their initial/saved value/state.  The parameters are:
+				<ul class="valueList">
+					<li>The jQuery object or objects to be rolled back.</li>
+					<li>The jQuery object representing the form or form field container.</li>
+					<li>(Optional, default is true) A Boolean value as to whether or not you want the plugin to evaluate whether or not the end result of this function makes the specified form fields dirty or not.  Set this to false to bypass the plugin's usual behavior.</li>
+				</ul>
+		</p>
+	</li>
+	<li>
+		<strong>rollbackTextValue</strong>(<em>Object(s)</em>,<em>Container object</em>,<em>Process change</em>)<br />
+		<p>
+			Reverts the specified text inputs, file inputs, password inputs, and/or &lt;textarea&gt; element(s) back to their initial/saved values.  The parameters are:
+				<ul class="valueList">
+					<li>The jQuery object or objects to be rolled back.</li>
+					<li>The jQuery object representing the form or form field container.</li>
+					<li>(Optional, default is true) A Boolean value as to whether or not you want the plugin to evaluate whether or not the end result of this function makes the specified form fields dirty or not.  Set this to false to bypass the plugin's usual behavior.</li>
+				</ul>
+		</p>
+	</li>
+	<li>
+		<a name="setStartingCheckboxRadioValue"></a><strong>setStartingCheckboxRadioValue</strong>(<em>Object(s)</em>,<em>Container object</em>)<br />
+		<p>
+			This function allows you to set the saved state of one or more checkboxes/radio button elements to whatever the current state of the element is.  You would used this function when dynamically adding a new checkbox/radio button element to an existing form so the plugin has an initial state for the element to use when evaluating if the element is dirty or not.  The parameters are:
+				<ul class="valueList">
+					<li>The jQuery object or objects to have their initial values/states set.</li>
+					<li>The jQuery object representing the form or form field container.</li>					
+				</ul>
+		</p>
+<pre>$.fn.dirtyFields.setStartingCheckboxRadioValue($("#addedBox"),$("#myForm"));</pre>
+	</li>
+	<li>
+		<a name="setStartingSelectValue"></a><strong>setStartingSelectValue</strong>(<em>Object(s)</em>,<em>Container object</em>)<br />
+		<p>
+			This function allows you to set the saved state of one or more &lt;select&gt; elements to whatever the current state of the element is.  You would used this function when dynamically adding a new &lt;select&gt; element to an existing form so the plugin has an initial state for the element to use when evaluating if the element is dirty or not.  The parameters are:
+				<ul class="valueList">
+					<li>The jQuery object or objects to have their initial values/states set.</li>
+					<li>The jQuery object representing the form or form field container.</li>					
+				</ul>
+		</p>
+	</li>
+	<li>
+		<a name="setStartingTextValue"></a><strong>setStartingTextValue</strong>(<em>Object(s)</em>,<em>Container object</em>)<br />
+		<p>
+			This function allows you to set the saved state of one or more text inputs, file inputs, password inputs, and/or &lt;textarea&gt; elements to whatever the current state of the element is.  You would used this function when dynamically adding a new text input/file input/password input/&lt;textarea&gt; element to an existing form so the plugin has an initial state for the element to use when evaluating if the element is dirty or not.  The parameters are:
+				<ul class="valueList">
+					<li>The jQuery object or objects to have their initial values/states set.</li>
+					<li>The jQuery object representing the form or form field container.</li>					
+				</ul>
+		</p>
+	</li>
+	<li>
+		<strong>updateCheckboxRadioState</strong>(<em>Object(s)</em>,<em>Container object</em>)<br />
+		<p>
+			The plugin normally only evaluates if a form field is dirty when the form element's change event is triggered.  Since programmatic alternations to a form field's state/value will not trigger a Javascript change event, use this function after you use Javascript to change the state of one or more checkboxes/radio buttons to prompt the plugin to evaluate whether or not the form field(s) are now dirty. The <a href="#fieldChangeCallback" class="internalLink">fieldChangeCallback</a> (and optionally the <a href="#formChangeCallback" class="internalLink">formChangeCallback</a>) will be executed once for each checkbox/radio button you update. The parameters are:
+			<ul class="valueList">
+				<li>The jQuery object or objects that have been updated/need to be evaluated.</li>
+				<li>The jQuery object representing the form or form field container.</li>
+			</ul>
+		</p>
+<pre>$.fn.dirtyFields.updateCheckboxRadioState($("input[name='ageRange']"),$("#myForm"));</pre>		
+	</li>
+	<li>
+		<strong>updateSelectState</strong>(<em>Object(s)</em>,<em>Container object</em>)<br />
+		<p>
+			The plugin normally only evaluates if a form field is dirty when the form element's change event is triggered.  Since programmatic alternations to a form field's state/value will not trigger a Javascript change event, use this function after you use Javascript to change the state of one or more &lt;select&gt; elements to prompt the plugin to evaluate whether or not the form field(s) are now dirty. The <a href="#fieldChangeCallback" class="internalLink">fieldChangeCallback</a> (and optionally the <a href="#formChangeCallback" class="internalLink">formChangeCallback</a>) will be executed once for each &lt;select&gt; element you update. The parameters are:
+			<ul class="valueList">
+				<li>The jQuery object or objects that have been updated/need to be evaluated.</li>
+				<li>The jQuery object representing the form or form field container.</li>
+			</ul>
+		</p>
+	</li>
+	<li>
+		<strong>updateTextState</strong>(<em>Object(s)</em>,<em>Container object</em>)<br />
+		<p>
+			The plugin normally only evaluates if a form field is dirty when the form element's change event is triggered.  Since programmatic alternations to a form field's state/value will not trigger a Javascript change event, use this function after you use Javascript to change the state of one or more text input, file input, password input and/or &lt;textarea&gt; elements to prompt the plugin to evaluate whether or not the form field(s) are now dirty. The <a href="#fieldChangeCallback" class="internalLink">fieldChangeCallback</a> (and optionally the <a href="#formChangeCallback" class="internalLink">formChangeCallback</a>) will be executed once for each text input, file input, password input and/or &lt;textarea&gt; you update. The parameters are:
+			<ul class="valueList">
+				<li>The jQuery object or objects that have been updated/need to be evaluated.</li>
+				<li>The jQuery object representing the form or form field container.</li>
+			</ul>
+		</p>
+	</li>
+</ul>
+
+<cfinclude template="footer.cfm">
