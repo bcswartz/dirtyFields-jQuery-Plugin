@@ -1,10 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<title>dirtyFields Examples</title>
-<!--Pulls jquery 1.3.2 from Google-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>dirtyFields Examples</title>
+
+<!--Pulls jquery 1.7 from Google-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.dirtyFields.packed.js"></script>
 
 <style>
@@ -246,15 +247,15 @@ $(document).ready(function() {
 	</p>
 	<div class="floatBreak"></div>
 	
-	<div class="formLeft"
+	<div class="formLeft">
 		<p class="checkboxP">
 			<label for="gameTypes" id="lbl_gameTypes1">Game Types Played:</label>
 				<div class="inputGroup checkboxDiv">
-				 	<input type="checkbox" name="gameTypes" id="gameTypes_1" value="1" checked="checked" tabindex="3"/> <span>8-Ball</span><br />
-					<input type="checkbox" name="gameTypes" id="gameTypes_2" value="2" checked="checked" tabindex="4"/> <span>9-Ball</span><br />
-					<input type="checkbox" name="gameTypes" id="gameTypes_3" value="3" tabindex="5"/> <span>3-Ball</span><br />
-					<input type="checkbox" name="gameTypes" id="gameTypes_4" value="4" tabindex="6"/> <span>1-Ball</span><br />
-					<input type="checkbox" name="gameTypes" id="gameTypes_5" value="5" tabindex="7"/> <span>Snooker</span><br />
+				 	<input type="checkbox" name="gameTypes" id="gameTypes_1" value="8-Ball" checked="checked" tabindex="3"/> <span>8-Ball</span><br />
+					<input type="checkbox" name="gameTypes" id="gameTypes_2" value="9-Ball" checked="checked" tabindex="4"/> <span>9-Ball</span><br />
+					<input type="checkbox" name="gameTypes" id="gameTypes_3" value="3-Ball" tabindex="5"/> <span>3-Ball</span><br />
+					<input type="checkbox" name="gameTypes" id="gameTypes_4" value="1-Ball" tabindex="6"/> <span>1-Ball</span><br />
+					<input type="checkbox" name="gameTypes" id="gameTypes_5" value="Snooker" tabindex="7"/> <span>Snooker</span><br />
 				</div>
 			<div class="floatBreak"></div>
 		</p>
@@ -262,10 +263,10 @@ $(document).ready(function() {
 	<p>
 		<label for="status" id="lbl_status1">Team Status:</label>
 		<div class="inputGroup">
-			<input type="radio" name="status" id="status_1" value="1" checked="checked" tabindex="8" /> <span>Active</span> <br />
-			<input type="radio" name="status" id="status_2" value="2" tabindex="9" /> <span>Inactive</span> <br />
-			<input type="radio" name="status" id="status_3" value="3" tabindex="10" /> <span>Ineligible</span> <br />
-			<input type="radio" name="status" id="status_4" value="4" tabindex="11" /> <span>Disbanded</span> <br />
+			<input type="radio" name="status" id="status_1" value="Active" checked="checked" tabindex="8" /> <span>Active</span> <br />
+			<input type="radio" name="status" id="status_2" value="Inactive" tabindex="9" /> <span>Inactive</span> <br />
+			<input type="radio" name="status" id="status_3" value="Ineligible" tabindex="10" /> <span>Ineligible</span> <br />
+			<input type="radio" name="status" id="status_4" value="Disbanded" tabindex="11" /> <span>Disbanded</span> <br />
 		</div>
 		<div class="floatBreak"></div>
 	</p>
@@ -274,12 +275,12 @@ $(document).ready(function() {
 		<br />
 		<label for="activeMembers1" id="lbl_activeMembers1">Team Captain:</label>
 		<select name="activeMembers" id="activeMembers1" tabindex="12">
-			<option value="4">Carter, Saul</option>
-			<option value="5">Dorn, Marty</option>
-			<option value="6">Drew, Neal</option>
-			<option value="7" selected="selected">Estaban, Carlos</option>
-			<option value="8">Franklin, Steve</option>
-			<option value="9">Garner, Tre</option>
+			<option value="Saul">Carter, Saul</option>
+			<option value="Marty">Dorn, Marty</option>
+			<option value="Neal">Drew, Neal</option>
+			<option value="Carlos" selected="selected">Estaban, Carlos</option>
+			<option value="Steve">Franklin, Steve</option>
+			<option value="Tre">Garner, Tre</option>
 		</select>
 	</p>
 </form>
@@ -379,15 +380,15 @@ $(document).ready(function() {
 		<br />
 		<label for="activeMembers2" id="lbl_activeMembers2">Active Members:</label>
 		<select name="activeMembers" id="activeMembers2" multiple="multiple"> 
-			<option value="1" selected="selected"  tabindex="24">Abel, Matthew</option>
-			<option value="2" selected="selected" tabindex="25">Balley, Lon</option>
-			<option value="3" selected="selected" tabindex="26">Cable, Brad</option>
-			<option value="4" tabindex="27">Carter, Saul</option>
-			<option value="5" tabindex="28">Dorn, Marty</option>
-			<option value="6" tabindex="29">Drew, Neal</option>
-			<option value="7" tabindex="30">Estaban, Carlos</option>
-			<option value="8" tabindex="31">Franklin, Steve</option>
-			<option value="9" tabindex="32">Garner, Tre</option>
+			<option value="Abel" selected="selected"  tabindex="24">Abel, Matthew</option>
+			<option value="Bailey" selected="selected" tabindex="25">Balley, Lon</option>
+			<option value="Cable" selected="selected" tabindex="26">Cable, Brad</option>
+			<option value="Carter" tabindex="27">Carter, Saul</option>
+			<option value="Dorn" tabindex="28">Dorn, Marty</option>
+			<option value="Drew" tabindex="29">Drew, Neal</option>
+			<option value="Estaban" tabindex="30">Estaban, Carlos</option>
+			<option value="Franklin" tabindex="31">Franklin, Steve</option>
+			<option value="Garner" tabindex="32">Garner, Tre</option>
 		</select>
 	</p>
 	<p>

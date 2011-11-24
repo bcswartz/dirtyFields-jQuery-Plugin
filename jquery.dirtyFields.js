@@ -85,7 +85,7 @@
 							return false;
 						};
 					}	
-					evaluateCheckboxRadoElement($object,$container);	
+					evaluateCheckboxRadioElement($object,$container);	
 				});	
 			break;
 		}	
@@ -142,7 +142,8 @@
 	$.fn.dirtyFields.setStartingCheckboxRadioValue = function($objects,$container){
 		return $objects.each(function() {
 			var $object= $(this);
-			if($object.attr("checked"))
+			var isChecked;
+			if($object.is(":checked"))
 				{
 					$object.data($container.data("dF").startingValueDataProperty,true);
 				}
@@ -165,7 +166,7 @@
 					var valArray= new Array;
 					$object.children("option").each(function(o) {
 							var $option= $(this);
-							if($option.attr("selected"))							
+							if($option.is(":selected"))							
 								{
 									$option.data($container.data("dF").startingValueDataProperty,true);
 									valArray.push($option.val());
@@ -216,14 +217,14 @@
 			
 			if(processChange)
 				{
-					evaluateCheckboxRadoElement($object,$container);
+					evaluateCheckboxRadioElement($object,$container);
 				}
 		});
 	};
 	
 	$.fn.dirtyFields.updateCheckboxRadioState= function($objects,$container) {
 		return $objects.each(function() {
-			evaluateCheckboxRadoElement($(this),$container);
+			evaluateCheckboxRadioElement($(this),$container);
 		});
 	};
 	
@@ -494,7 +495,7 @@
 				var optionsDirty= false;
 				$object.children("option").each(function(o) {
 					var $option= $(this);
-					var isSelected= $option.attr("selected");
+					var isSelected= $option.is(":selected");
 					if(isSelected != $option.data($container.data("dF").startingValueDataProperty))
 						{
 							if ($container.data("dF").denoteDirtyOptions) {
@@ -535,11 +536,10 @@
 			
 	};
 	
-	function evaluateCheckboxRadoElement($object,$container) {
+	function evaluateCheckboxRadioElement($object,$container) {
 		var objectName= $object.attr("name");
 		var elemDirty= false;
-		
-		var isChecked= $object.attr("checked");
+		var isChecked= $object.is(":checked");
 		if(isChecked != $object.data($container.data("dF").startingValueDataProperty))
 			{
 				updateContext("checkboxRadioContext",$object,"changed",$container);
@@ -555,7 +555,7 @@
 				$(":radio[name='" + objectName + "']",$container).each(function(r) {
 					var $thisRadio= $(this);
 					var radioName= $thisRadio.attr("name");
-					var thisIsChecked= $thisRadio.attr("checked");
+					var thisIsChecked= $thisRadio.is(":checked");
 					if(thisIsChecked != $thisRadio.data($container.data("dF").startingValueDataProperty))
 						{
 							updateContext("checkboxRadioContext",$thisRadio,"changed",$container);
