@@ -302,7 +302,7 @@
 	};
 	
 	function updateFormStatus($container) {
-		if($("." + $container.data("dF").dirtyFieldClass,$container).length > 0) 
+		if($container.data("dF").dirtyFieldsDataProperty.length > 0) 
 			{
 				$container.addClass($container.data("dF").dirtyFormClass);
 				if($.isFunction($container.data("dF").formChangeCallback))
@@ -539,34 +539,22 @@
 	function evaluateCheckboxRadioElement($object,$container) {
 		var objectName= $object.attr("name");
 		var elemDirty= false;
-		var isChecked= $object.is(":checked");
-		if(isChecked != $object.data($container.data("dF").startingValueDataProperty))
-			{
-				updateContext("checkboxRadioContext",$object,"changed",$container);
-				elemDirty= true;
-			}
-		else
-			{
-				updateContext("checkboxRadioContext",$object,"unchanged",$container);
-			}
+		var objectType= $object.attr("type");
+		
+		$(":" + objectType + "[name='" + objectName + "']",$container).each(function(r) {
+			var $thisControl= $(this);
+			var thisIsChecked= $thisControl.is(":checked");
+			if(thisIsChecked != $thisControl.data($container.data("dF").startingValueDataProperty))
+				{
+					updateContext("checkboxRadioContext",$thisControl,"changed",$container);
+					elemDirty= true;
+				}
+			else
+				{
+					updateContext("checkboxRadioContext",$thisControl,"unchanged",$container);
+				}
 			
-		if($object.attr("type")== 'radio')
-			{
-				$(":radio[name='" + objectName + "']",$container).each(function(r) {
-					var $thisRadio= $(this);
-					var radioName= $thisRadio.attr("name");
-					var thisIsChecked= $thisRadio.is(":checked");
-					if(thisIsChecked != $thisRadio.data($container.data("dF").startingValueDataProperty))
-						{
-							updateContext("checkboxRadioContext",$thisRadio,"changed",$container);
-							elemDirty= true;
-						}
-					else
-						{
-							updateContext("checkboxRadioContext",$thisRadio,"unchanged",$container);
-						}
-				});
-			}
+		});
 		
 		if(elemDirty) 
 			{
