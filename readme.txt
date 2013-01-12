@@ -1,28 +1,29 @@
-#dirtyFields Plugin
+dirtyFields Plugin
+*******************
 
 dirtyFields is a jQuery plugin that makes a user aware of which form elements have been updated on an HTML form and can reset the form values back to their previous state.
 
-##Demos / Documentation
+
+Demos / Documentation
+*********************
 
 Online documentation and demos can be found at http://www.thoughtdelimited.org/dirtyFields/index.cfm
 
-##Usage / License
 
-This plugin is covered by the MIT open-source license (see license.txt), which pretty much states that you use the plugin 
-in any project and can modify it as needed so long as the license notice itself is associated with the plugin.  Basically, I want 
-you to be able to use it anywhere you want and modify it in any way you want: just don't take credit for writing the original 
-version of the plugin.
+Usage / License
+***************
 
-This download includes a packed version of the plugin, a human-readable version of the plugin which you're free to modify 
-to meet your needs, a documentation HTML page and an HTML page with working examples of how to use the plugin 
+This plugin is covered by the MIT open-source license (see license.txt), which pretty much states that you use the plugin in any project and can modify it as needed so long as the license notice itself is associated with the plugin.  Basically, I want you to be able to use it anywhere you want and modify it in any way you want: just don't take credit for writing the original version of the plugin.
+
+This download includes a packed version of the plugin, a human-readable version of the plugin which you're free to modify to meet your needs, a documentation HTML page and an HTML page with working examples of how to use the plugin 
 which should work as long as the plugin file is in the same directory.
 
 
+Change Log
+**********
 
-##Change Log
-
-
-**Version 1.2 (January 2013):**
+Version 1.2 (January 2013):
+---------------------------
 
 	--Added two new public functions:
 		--getDirtyFieldNames() returns an array of all currently dirty fields
@@ -42,6 +43,7 @@ which should work as long as the plugin file is in the same directory.
 All version 1.2 changes were implemented in response to code suggestions made a team of developers: Pawar Aishwarya, Gadkari Amit, and Naik Pankaj. 
 		
 
-**Version 1.1 (November 2011):**
+Version 1.1 (November 2011):
+----------------------------
 
 	--Updated the plugin to be compatible with update to attr() function introduced in  jQuery 1.6.
