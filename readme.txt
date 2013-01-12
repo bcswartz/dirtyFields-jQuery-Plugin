@@ -15,8 +15,7 @@ Usage / License
 
 This plugin is covered by the MIT open-source license (see license.txt), which pretty much states that you use the plugin in any project and can modify it as needed so long as the license notice itself is associated with the plugin.  Basically, I want you to be able to use it anywhere you want and modify it in any way you want: just don't take credit for writing the original version of the plugin.
 
-This download includes a packed version of the plugin, a human-readable version of the plugin which you're free to modify to meet your needs, a documentation HTML page and an HTML page with working examples of how to use the plugin 
-which should work as long as the plugin file is in the same directory.
+This download includes a packed version of the plugin, a human-readable version of the plugin which you're free to modify to meet your needs, a documentation HTML page and an HTML page with working examples of how to use the plugin which should work as long as the plugin file is in the same directory.
 
 
 Change Log
