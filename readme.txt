@@ -36,7 +36,7 @@ Version 1.2 (January 2013):
 	--Added three new configuration options to control plugin behavior:
 		--The denoteDirtyFields option controls whether or not the dirty CSS class is applied to the form elements that are dirty/changed.
 		--The exclusionClass option specifies the name of the CSS class that, when applied to a form field, will exclude that field from being processed by the plugin.
-		--The ignoreCaseClass option specifies the name of the CSS class tha, when applied to a form field, will instruct the plugin to do a case-insensitive evaluation
+		--The ignoreCaseClass option specifies the name of the CSS class that, when applied to a form field, will instruct the plugin to do a case-insensitive evaluation
 		of the current and original states of the field.
 		
 All version 1.2 changes were implemented in response to code suggestions made a team of developers: Pawar Aishwarya, Gadkari Amit, and Naik Pankaj. 
