@@ -1,11 +1,12 @@
-dirtyFields Plugin
-********************************
+#dirtyFields Plugin
 
 dirtyFields is a jQuery plugin that makes a user aware of which form elements have been updated on an HTML form and can reset the form values back to their previous state.
 
+##Demos / Documentation
 
-Usage / License
-**********************
+Online documentation and demos can be found at http://www.thoughtdelimited.org/dirtyFields/index.cfm
+
+##Usage / License
 
 This plugin is covered by the MIT open-source license (see license.txt), which pretty much states that you use the plugin 
 in any project and can modify it as needed so long as the license notice itself is associated with the plugin.  Basically, I want 
@@ -18,11 +19,10 @@ which should work as long as the plugin file is in the same directory.
 
 
 
-Change Log
-*******************
+##Change Log
 
-Version 1.2 (January 2013):
------------------------------------
+
+**Version 1.2 (January 2013):**
 
 	--Added two new public functions:
 		--getDirtyFieldNames() returns an array of all currently dirty fields
@@ -42,7 +42,6 @@ Version 1.2 (January 2013):
 All version 1.2 changes were implemented in response to code suggestions made a team of developers: Pawar Aishwarya, Gadkari Amit, and Naik Pankaj. 
 		
 
-Version 1.1 (November 2011):
----------------------------------------
+**Version 1.1 (November 2011):**
 
 	--Updated the plugin to be compatible with update to attr() function introduced in  jQuery 1.6.
