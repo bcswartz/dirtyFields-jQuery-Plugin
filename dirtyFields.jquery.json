@@ -1,5 +1,5 @@
 {
-	"name": "dirtyFields",
+	"name": "dirtyfields",
 	"title": "jQuery dirtyFields",
 	"description": "jQuery plugin that monitors the form fields within the specified form or DOM container for changes, and will apply 'dirty' CSS class to the form and/or to DOM elements related to changed form fields (labels, spans, etc.).  Provides several configuration options, public functions, and callbacks for customizing plugin behavior.",
 	"keywords": [
