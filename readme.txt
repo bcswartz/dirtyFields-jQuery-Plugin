@@ -20,11 +20,11 @@ This download includes a packed version of the plugin, a human-readable version 
 
 Change Log
 **********
-Version 2.0.0 (January 2013):
+Version 2.0.3 (January 2013):
 -----------------------------
 
 	--Added manifest file so the plugin can be listed in the jQuery plugin registry.
-	--Moved version number up to 2.0.0 to conform with semver standards used by jQuery plugin registry.
+	--Moved version number up to 2.0.3 to conform with semver standards used by jQuery plugin registry.
 
 
 Version 1.2 (January 2013):
