@@ -4,16 +4,11 @@
 	"description": "jQuery plugin that monitors the form fields within the specified form or DOM container for changes, and will apply 'dirty' CSS class to the form and/or to DOM elements related to changed form fields (labels, spans, etc.).  Provides several configuration options, public functions, and callbacks for customizing plugin behavior.",
 	"keywords": [
 		"dirty",
-		"dirty fields",
-		"dirty form",
-		"form changes",
-		"state changes",
-		"track form changes",
-		"monitor state",
-		"monitor form state",
-		"revert form"
+		"form",
+		"formfields",
+		"revert"
 	],
-	"version": "2.0.1",
+	"version": "2.0.0",
 	"author": {
 		"name": "Brian Swartzfager",
 		"email": "bcswartz@gmail.com",
