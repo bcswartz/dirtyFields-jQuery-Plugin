@@ -11,6 +11,11 @@ http://www.thoughtdelimited.org/dirtyFields/index.cfm
 CHANGE LOG
 *******************
 
+Version 1.2.1 (May 2014):
+-----------------------------------
+	--Added ability to change the fields that the plugin sees as "text" fields
+    --Added default text fields to include tel, number, email, and url
+
 Version 1.2 (January 2013):
 -----------------------------------
 
