@@ -131,7 +131,7 @@
 	};
 	
 	$.fn.dirtyFields.setStartingValues= function($container,opts) {
-		$(opts.inclusionTextFields.join(','),$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
+		$($container.data("dF").inclusionTextFields.join(","),$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
 				var $object= $(this);
 				if($object.attr("type")== "radio" || $object.attr("type")== "checkbox")
 					{
