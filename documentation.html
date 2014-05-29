@@ -200,6 +200,16 @@ $("#myForm").dirtyFields(options);</pre>
 		<p>Changes made to any form elements that have this exclusion CSS class will not be tracked and will not change the dirty/clean state of the form.</p>
 		<p><strong>NOTE:</strong> all of the relevant public functions such as <a href="#configureField" class="internalLink">configureField</a> will respect this exclusion class (they do not override it), so the exclusion CSS class must be removed from the DOM element if you want to programmatically add it to the collection of form fields being tracked by the plugin.</p>
 	</li>
+<li>
+		<strong>inclusionTextFields</strong><br />
+		Default: [<br />
+               "input:not([type='button'], [type='submit'], [type='reset'])",<br />
+               "textarea"<br />
+           ]<br />
+		<p>
+			HTML5 has increased the number of "text" fields, so we merely exclude buttons.
+		</p>
+	</li>
 	<li>
     	<a name="fieldOverrides"></a><strong>fieldOverrides</strong><br />
 		Default: {none:"none"}<br />
