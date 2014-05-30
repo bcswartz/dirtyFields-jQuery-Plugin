@@ -20,6 +20,13 @@ This download includes a packed version of the plugin, a human-readable version 
 
 Change Log
 **********
+Version 2.0.4 (May 2014):
+-----------------------------------
+
+	--Added ability to change the fields that the plugin sees as "text" fields
+	--Added default text fields to include all inputs except button types
+    
+    
 Version 2.0.3 (January 2013):
 -----------------------------
 

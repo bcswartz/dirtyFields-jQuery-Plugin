@@ -10,7 +10,7 @@
 			$container.data("dF",opts);
 			$container.data("dF").dirtyFieldsDataProperty= new Array;
 			
-			$("input[type='text'],input[type='file'],input[type='password'],textarea",$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
+			$($container.data("dF").inclusionTextFields.join(","),$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
 				$.fn.dirtyFields.configureField($(this),$container,"text");
 			});
 			
@@ -38,7 +38,11 @@
 		   dirtyFieldsDataProperty:"dirtyFields",
 		   dirtyFormClass: "dirtyForm",
 		   dirtyOptionClass: "dirtyOption",
-		   exclusionClass: "dirtyExclude", 
+		   exclusionClass: "dirtyExclude",
+           inclusionTextFields: [
+               "input:not([type='button'], [type='submit'], [type='reset'])",
+               "textarea"
+           ],
 		   fieldChangeCallback: "",
 		   fieldOverrides: {none:"none"},
 		   formChangeCallback: "",
@@ -121,7 +125,7 @@
 	};
 	
 	$.fn.dirtyFields.setStartingValues= function($container,opts) {
-		$("input[type='text'],input[type='file'],input[type='password'],:checkbox,:radio,textarea",$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
+		$($container.data("dF").inclusionTextFields.join(","),$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
 				var $object= $(this);
 				if($object.attr("type")== "radio" || $object.attr("type")== "checkbox")
 					{
@@ -273,7 +277,7 @@
 	
 	
 	$.fn.dirtyFields.rollbackForm= function($container) {
-		$("input[type='text'],input[type='file'],input[type='password'],:checkbox,:radio,textarea",$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
+		$($container.data("dF").inclusionTextFields.join(","),$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
 					$object= $(this);
 					if($object.attr("type")== "radio" || $object.attr("type")== "checkbox")
 						{
@@ -293,7 +297,7 @@
 	};  
 	
 	$.fn.dirtyFields.updateFormState = function($container) {		
-		$("input[type='text'],input[type='file'],input[type='password'],:checkbox,:radio,textarea",$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
+		$($container.data("dF").inclusionTextFields.join(","),$container).not("." + $container.data("dF").exclusionClass).each(function(i) {
 			$object= $(this);
 			if ($object.attr("type") == "radio" || $object.attr("type") == "checkbox") 
 				{
