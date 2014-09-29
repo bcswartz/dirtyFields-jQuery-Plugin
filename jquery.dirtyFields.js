@@ -40,7 +40,7 @@
 		   dirtyOptionClass: "dirtyOption",
 		   exclusionClass: "dirtyExclude",
            inclusionTextFields: [
-               "input:not([type='button'], [type='submit'], [type='reset'])",
+               "input:not([type='button'], [type='submit'], [type='reset'], [type='hidden'])",
                "textarea"
            ],
 		   fieldChangeCallback: "",
