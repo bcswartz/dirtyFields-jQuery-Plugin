@@ -23,6 +23,13 @@ border color).  But you can't do that with &lt;select&gt; drop-downs, checkboxes
 &lt;span&gt; or &lt;div&gt;, or any element you somehow associate with that form field:  the plugin options give you
 complete control over what gets styled to indicate a field has been changed/made "dirty".</p>
 
+
+<p>dirtyFields also gives you the option to apply a style to a container element (a &lt;form&gt;, a &lt;div&gt;
+containing multiple forms, whatever) that indicates that the form is dirty whenver one or more of the form field
+elements within the container is dirty.  This option comes in handy when you want a more noticable indicator that the
+user needs to save the form to perserve their changes or when not all of the form fields are visible on a single
+screen.</p>
+
 <div class="imgWrapper">
     <img src="assets/images/dirtyFields_checkbox_image.png" />
     <p>
@@ -30,13 +37,6 @@ complete control over what gets styled to indicate a field has been changed/made
         the style change.
     </p>
 </div>
-
-
-<p>dirtyFields also gives you the option to apply a style to a container element (a &lt;form&gt;, a &lt;div&gt;
-containing multiple forms, whatever) that indicates that the form is dirty whenver one or more of the form field
-elements within the container is dirty.  This option comes in handy when you want a more noticable indicator that the
-user needs to save the form to perserve their changes or when not all of the form fields are visible on a single
-screen.</p>
 
 <p>The plugin determines if a form field is dirty by comparing the current value/state of the form field element with
 its previous value/state, which the plugin stores "within" the field element using
