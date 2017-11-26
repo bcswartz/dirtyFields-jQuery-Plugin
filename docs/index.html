@@ -4,10 +4,6 @@ layout: default
 
 <p>The dirtyFields plugin was born out of the need to make a user aware that they had unsaved values on an HTML form.</p>
 
-<p>It seems like a simple task at first:  it's easy to use jQuery to bind an event to a text input or a &lt;textarea&gt;
-such that, when a change is made to the value, the text element is styled to look visually different (like changing the
-border color).  But you can't do that with &lt;select&gt; drop-downs, checkboxes, or radio buttons.</p>
-
 <div class="imgWrapper">
     <img src="assets/images/dirtyFields_changeImage.png" />
     <p>
@@ -17,10 +13,24 @@ border color).  But you can't do that with &lt;select&gt; drop-downs, checkboxes
     </p>
 </div>
 
+<p>It seems like a simple task at first:  it's easy to use jQuery to bind an event to a text input or a &lt;textarea&gt;
+such that, when a change is made to the value, the text element is styled to look visually different (like changing the
+border color).  But you can't do that with &lt;select&gt; drop-downs, checkboxes, or radio buttons.</p>
+
+
 <p>This plugin gets around that problem by letting you apply whatever CSS class you want to use to indicate that a field
  has been changed to a contextually-related element, like a &lt;label&gt; element for the field, or an adjacent
 &lt;span&gt; or &lt;div&gt;, or any element you somehow associate with that form field:  the plugin options give you
 complete control over what gets styled to indicate a field has been changed/made "dirty".</p>
+
+<div class="imgWrapper">
+    <img src="assets/images/dirtyFields_checkbox_image.png" />
+    <p>
+        The plugin works on select boxes, checkboxes, and radio buttons as well.  You can control what text receives
+        the style change.
+    </p>
+</div>
+
 
 <p>dirtyFields also gives you the option to apply a style to a container element (a &lt;form&gt;, a &lt;div&gt;
 containing multiple forms, whatever) that indicates that the form is dirty whenver one or more of the form field
