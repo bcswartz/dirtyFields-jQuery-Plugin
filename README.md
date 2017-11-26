@@ -5,7 +5,7 @@ dirtyFields is a jQuery plugin that makes a user aware of which form elements ha
 
 The main website for the plugin (which includes documentation, demos, and a download file) is currently at:
 
-[https://bcswartz.github.io/dirtyFields-jQuery-Plugin/]
+https://bcswartz.github.io/dirtyFields-jQuery-Plugin/
 
 
 ## CHANGE LOG
