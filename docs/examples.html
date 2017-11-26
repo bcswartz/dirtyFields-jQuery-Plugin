@@ -161,12 +161,13 @@ layout: default
 <p>This example demonstrates what the plugin does with form fields on its default settings.  Change the values of the text input, textarea, and select box, and as they lose the focus you'll see their labels change.  Click on the checkboxes and radio buttons to see a similar thing happen with the associated text.  Change things back to where they started to reverse the style change.</p>
 
 <p><a id="demo1CodeLink" class="internalLink" href="">View code</a></p>
-<pre id="demo1Code">&lt;style&gt;
-.dirtyField {color:red;}
+<pre id="demo1Code">
+&lt;style&gt;
+    .dirtyField {color:red;}
 &lt;/style&gt;
 
 $(document).ready(function() {
-$("#demo1").dirtyFields();
+    $("#demo1").dirtyFields();
 });
 </pre>
 <form name="demo1" id="demo1" method="post" action="none.html">
@@ -236,42 +237,43 @@ $("#demo1").dirtyFields();
 <p>As you make changes to the form, the various callbacks will add logging statements to the &lt;div&gt; block below the form, and the formChangeCallback will change the background color of the form and disable or enable the form buttons depending on whether or not the form is dirty.  After you make a few changes, click the "Reset" button to undo all of your changes.  Make a few additional changes, the click the "Fake Submit" button to simulate an AJAX form submission and update the saved values/states of each form field with the current field values/states.  Make another change or two, then click the "Reset" button again, and note how the values were reset to what they were just after you clicked the "Fake Submit" button, and not to the values that existed when the page was first loaded.</p>
 
 <p><a id="demo2CodeLink" class="internalLink" href="">View code</a></p>
-<pre id="demo2Code">&lt;style&gt;
-.dirtyField {color:red;}
-.dirtyForm {background-color:#ffffcc;}
-.dirtyChoice {font-style:italic;font-weight:bold;}
+<pre id="demo2Code">
+&lt;style&gt;
+    .dirtyField {color:red;}
+    .dirtyForm {background-color:#ffffcc;}
+    .dirtyChoice {font-style:italic;font-weight:bold;}
 &lt;/style&gt;
 
 $(document).ready(function() {
-var demo2Settings= {
-    denoteDirtyForm: true,
-    denoteDirtyOptions:true,
-    dirtyOptionClass:"dirtyChoice",
-    trimText:true,
-    preFieldChangeCallback: function(originalValue) {
-        $("#callbackBox").append("[preFieldChangeCallback] Original value of field '" + $(this).attr("name") + "' is: " + originalValue + "&lt;br /&gt;");
-    },
-    fieldChangeCallback: function(originalValue,result) {
-        $("#callbackBox").append("[fieldChange callback] Original value of field  '" + $(this).attr("name") + "' is: " + originalValue + ".  Dirty status is " + result + "&lt;br /&gt;");
-    },
-    formChangeCallback: function(result,dirtyFieldsArray) {
-        if(result)
-            {
-                $(this).find("input[type='button']").attr("disabled",false);
-                $("#callbackBox").append("[formChangeCallback] Form is dirty. Dirty fields are: " + dirtyFieldsArray + "&lt;br /&gt;");
-            }
-        else
-            {
-                $(this).find("input[type='button']").attr("disabled",true);
-                $("#callbackBox").append("[formChangeCallback] Form is clean.&lt;br /&gt;");
-            }
-        //Scrolls the logging div to the bottom
-        var objDiv = document.getElementById("callbackBox");
-        objDiv.scrollTop = objDiv.scrollHeight;
-    }
-};
+    var demo2Settings= {
+        denoteDirtyForm: true,
+        denoteDirtyOptions:true,
+        dirtyOptionClass:"dirtyChoice",
+        trimText:true,
+        preFieldChangeCallback: function(originalValue) {
+            $("#callbackBox").append("[preFieldChangeCallback] Original value of field '" + $(this).attr("name") + "' is: " + originalValue + "&lt;br /&gt;");
+        },
+        fieldChangeCallback: function(originalValue,result) {
+            $("#callbackBox").append("[fieldChange callback] Original value of field  '" + $(this).attr("name") + "' is: " + originalValue + ".  Dirty status is " + result + "&lt;br /&gt;");
+        },
+        formChangeCallback: function(result,dirtyFieldsArray) {
+            if(result)
+                {
+                    $(this).find("input[type='button']").attr("disabled",false);
+                    $("#callbackBox").append("[formChangeCallback] Form is dirty. Dirty fields are: " + dirtyFieldsArray + "&lt;br /&gt;");
+                }
+            else
+                {
+                    $(this).find("input[type='button']").attr("disabled",true);
+                    $("#callbackBox").append("[formChangeCallback] Form is clean.&lt;br /&gt;");
+                }
+            //Scrolls the logging div to the bottom
+            var objDiv = document.getElementById("callbackBox");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+    };
 
-$("#demo2").dirtyFields(demo2Settings);
+    $("#demo2").dirtyFields(demo2Settings);
 });
 </pre>
 <form name="demo2" id="demo2" method="post" action="none.html">
@@ -340,37 +342,38 @@ $("#demo2").dirtyFields(demo2Settings);
 <p>This example demonstrates the use of the configureFields public function to add the event handler to new form fields created after the page has been loaded.  Click the "Add Member" link to add new team members, and make changes to those new form fields to see how the correponding labels are updated.</p>
 
 <p><a id="demo3CodeLink" class="internalLink" href="">View code</a></p>
-<pre id="demo3Code">&lt;style&gt;
-.dirtyField {color:red;}
+<pre id="demo3Code">
+&lt;style&gt;
+    .dirtyField {color:red;}
 &lt;/style&gt;
 
 $(document).ready(function() {
-$("#demo3").dirtyFields();
+    $("#demo3").dirtyFields();
 
-$("#addMember").click(function() {
-    //Code to create the new fields and set the names and ids
-    memberCount= memberCount+1;
-    var newBlockId= "memberBlock" + memberCount;
-    var newTeamMemberId= "memberName" + memberCount;
-    var newSkillLevelId= "skillLevel" + memberCount;
-    var $memberBlock= $("#template",$("#demo3")).clone();
-    $memberBlock.attr("id",newBlockId);
-    $memberBlock.find("label:eq(0)").attr("for",newTeamMemberId);
-    $memberBlock.find("input").attr("id",newTeamMemberId).attr("name","memberName");
-    $memberBlock.find("label:eq(1)").attr("for",newSkillLevelId);
-    $memberBlock.find("select").attr("id",newSkillLevelId).attr("name","skillLevel");
-    //Add the new set of fields
-    $("#memberFieldset").append($memberBlock);
-    //Use the plugin's setStartingTextValue and setStartingSelectValue to store the initial value of the fields
-    $.fn.dirtyFields.setStartingTextValue($("#"+newTeamMemberId),$("#demo3"));
-    $.fn.dirtyFields.setStartingSelectValue($("#"+newSkillLevelId),$("#demo3"));
-    //Use the plugin's configureField function to set the event handlers
-    $.fn.dirtyFields.configureField($("#"+newTeamMemberId),$("#demo3"),"text");
-    $.fn.dirtyFields.configureField($("#"+newSkillLevelId),$("#demo3"),"select");
-    //Show the new set of fields
-    $memberBlock.removeClass("hideElement");
-    return false;
-});
+    $("#addMember").click(function() {
+        //Code to create the new fields and set the names and ids
+        memberCount= memberCount+1;
+        var newBlockId= "memberBlock" + memberCount;
+        var newTeamMemberId= "memberName" + memberCount;
+        var newSkillLevelId= "skillLevel" + memberCount;
+        var $memberBlock= $("#template",$("#demo3")).clone();
+        $memberBlock.attr("id",newBlockId);
+        $memberBlock.find("label:eq(0)").attr("for",newTeamMemberId);
+        $memberBlock.find("input").attr("id",newTeamMemberId).attr("name","memberName");
+        $memberBlock.find("label:eq(1)").attr("for",newSkillLevelId);
+        $memberBlock.find("select").attr("id",newSkillLevelId).attr("name","skillLevel");
+        //Add the new set of fields
+        $("#memberFieldset").append($memberBlock);
+        //Use the plugin's setStartingTextValue and setStartingSelectValue to store the initial value of the fields
+        $.fn.dirtyFields.setStartingTextValue($("#"+newTeamMemberId),$("#demo3"));
+        $.fn.dirtyFields.setStartingSelectValue($("#"+newSkillLevelId),$("#demo3"));
+        //Use the plugin's configureField function to set the event handlers
+        $.fn.dirtyFields.configureField($("#"+newTeamMemberId),$("#demo3"),"text");
+        $.fn.dirtyFields.configureField($("#"+newSkillLevelId),$("#demo3"),"select");
+        //Show the new set of fields
+        $memberBlock.removeClass("hideElement");
+        return false;
+    });
 
 });
 </pre>
