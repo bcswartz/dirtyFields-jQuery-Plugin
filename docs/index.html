@@ -2,4 +2,36 @@
 layout: default
 ---
 
-<p>This is the content area.</p>
+<p>The dirtyFields plugin was born out of the need to make a user aware that they had unsaved values on an HTML form.</p>
+
+<p>It seems like a simple task at first:  it's easy to use jQuery to bind an event to a text input or a &lt;textarea&gt;
+such that, when a change is made to the value, the text element is styled to look visually different (like changing the
+border color).  But you can't do that with &lt;select&gt; drop-downs, checkboxes, or radio buttons.</p>
+
+<p>This plugin gets around that problem by letting you apply whatever CSS class you want to use to indicate that a field
+ has been changed to a contextually-related element, like a &lt;label&gt; element for the field, or an adjacent
+&lt;span&gt; or &lt;div&gt;, or any element you somehow associate with that form field:  the plugin options give you
+complete control over what gets styled to indicate a field has been changed/made "dirty".</p>
+
+<p>dirtyFields also gives you the option to apply a style to a container element (a &lt;form&gt;, a &lt;div&gt;
+containing multiple forms, whatever) that indicates that the form is dirty whenver one or more of the form field
+elements within the container is dirty.  This option comes in handy when you want a more noticable indicator that the
+user needs to save the form to perserve their changes or when not all of the form fields are visible on a single
+screen.</p>
+
+<p>The plugin determines if a form field is dirty by comparing the current value/state of the form field element with
+its previous value/state, which the plugin stores "within" the field element using
+jQuery's <a href="http://docs.jquery.com/Core/data#name">data() function</a>.  That previous value/state is set for
+each form field when the plugin is first executed or when the plugin's formSaved() public function is executed.
+dirtyFields comes with a number of public functions that let you take advantage of this feature:  you can rollback
+individual form field values, programmatically change the value/state of any form field and still trigger the plugin
+routine that determines if the field has changed, or reset the entire form back to its previously saved state.
+There are even public functions to help you apply the plugin to form fields dynamically added to the form later
+via Javascript.</p>
+
+<p>Finally, there are callback functions incorporated into the plugin that let you execute your own functions before
+or after the plugin routine that determines if a field has changed and after the plugin routine that determines if
+the form/form field container is dirty or not.</p>
+
+<p>All of this is described in more detail on the <a href="documentation.html">Documentation</a>
+page, and demonstrated on the <a href="examples.html">Examples</a> page.</p>
