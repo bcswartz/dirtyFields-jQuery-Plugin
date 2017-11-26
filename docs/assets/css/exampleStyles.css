@@ -1,7 +1,10 @@
-form {border:1px solid #ccc;}
+form {
+    border: 1px solid #ccc;
+    font-size: 70%;
+}
 
 form label {
-    width:10em;
+    width: 10em;
     float: left;
     text-align: right;
     margin-right: 0.5em;
