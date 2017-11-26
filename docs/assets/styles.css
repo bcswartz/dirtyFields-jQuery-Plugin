@@ -1,0 +1,16 @@
+.imgWrapper {
+    border: 2px solid #ccc;
+    float:right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 300px;
+}
+
+.imgWrapper p {
+    background-color: #ccc;
+    font: 80%/160% "Trebuchet MS", Tahoma, Arial;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 3px;
+}

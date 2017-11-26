@@ -8,6 +8,15 @@ layout: default
 such that, when a change is made to the value, the text element is styled to look visually different (like changing the
 border color).  But you can't do that with &lt;select&gt; drop-downs, checkboxes, or radio buttons.</p>
 
+<div class="imgWrapper">
+    <img src="assets/images/dirtyFields_changeImage.png" />
+    <p>
+        When applied, the dirtyFields plugin records the initial state of each form element. Any time a field is
+        "dirtied", a CSS style is applied the text associated with the element. The form can also be styled to
+        denote the presence of dirty fields.
+    </p>
+</div>
+
 <p>This plugin gets around that problem by letting you apply whatever CSS class you want to use to indicate that a field
  has been changed to a contextually-related element, like a &lt;label&gt; element for the field, or an adjacent
 &lt;span&gt; or &lt;div&gt;, or any element you somehow associate with that form field:  the plugin options give you
