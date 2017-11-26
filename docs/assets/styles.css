@@ -1,4 +1,4 @@
-.imgWrapper_left {
+.imgWrapper {
     border: 2px solid #ccc;
     float: left;
     margin-right: 20px;
@@ -18,3 +18,18 @@
     margin-top: 0px;
     padding: 3px;
 }
+
+pre {
+    background-color: #ffffcc;
+    font-family: Arial, sans-serif;
+    font-size: 95%;
+    overflow: auto;
+    padding: 5px;
+    width: 98%;
+}
+
+.mainList { margin-left: 15px; padding-left: 15px; }
+.mainList > li { margin-bottom:3ex; }
+.mainList > li > strong { color: red; }
+
+.sublist > li { margin-bottom: 1ex; }
