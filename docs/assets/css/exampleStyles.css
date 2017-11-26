@@ -1,0 +1,67 @@
+form {border:1px solid #ccc;}
+
+form label {
+    width:10em;
+    float: left;
+    text-align: right;
+    margin-right: 0.5em;
+    display: block;
+    font-weight:bold;
+}
+
+.inputGroup {float:left;margin-bottom:10px;}
+
+.floatBreak {
+    position:relative;
+    clear:both;
+    width:100%;
+    margin-top:25px;
+}
+
+#resetButton {
+    margin-left:35em;margin-top:15px;width:100px;
+}
+
+#callbackBox {
+    overflow:scroll;
+    border:2px solid #ccc;
+    margin:5px;
+    padding:5px;
+    height:16ex;
+}
+
+.formLeft {
+    width:320px;
+    float:left;
+}
+
+
+
+.checkboxP {margin-top:0ex;}
+.checkboxDiv {margin-top:-1.8ex;}
+
+input, select, textarea {
+    font: 85%/160% "Trebuchet MS", Tahoma, Arial;
+}
+
+#callbackBox {
+    overflow:scroll;
+    border:2px solid #ccc;
+    margin:5px;
+    padding:5px;
+    height:16ex;
+}
+
+
+.hideElement {display:none;}
+
+.memberBlock {
+    border-bottom:1px solid #ccc;
+}
+
+.templateLeft {
+    margin-top:0ex;
+    width:320px;
+    float:left;
+}
+

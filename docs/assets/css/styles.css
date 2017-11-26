@@ -22,7 +22,7 @@
 pre {
     background-color: #ffffcc;
     font-family: Arial, sans-serif;
-    font-size: 95%;
+    font-size: 75% !important;
     overflow: auto;
     padding: 5px;
     width: 98%;
